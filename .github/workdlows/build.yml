@@ -1,0 +1,25 @@
+name: Build and Push PHP Application
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: actions/setup-node@v3
+        with:
+          php-version: 8.2
+
+      - name: Copy files
+        run: |
+          cp -r . /usr/src/myapp
+
+      - name: Run PHP script
+        run: php /usr/src/myapp/your-script.php
